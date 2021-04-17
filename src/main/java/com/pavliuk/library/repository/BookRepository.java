@@ -1,8 +1,13 @@
 package com.pavliuk.library.repository;
 
+import com.pavliuk.library.entity.Book;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 /**
  * @author Alex
  * @link http://healthfood.net.ua
  */
-public class BookRepository {
+@Repository
+public interface BookRepository extends JpaRepository<Book, Long> {
 }

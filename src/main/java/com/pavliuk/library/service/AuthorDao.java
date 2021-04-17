@@ -1,0 +1,12 @@
+package com.pavliuk.library.service;
+
+import com.pavliuk.library.entity.Author;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author Alex
+ * @link http://healthfood.net.ua
+ */
+@RestController
+public interface AuthorDao extends GeneralDAO<Author> {
+}
