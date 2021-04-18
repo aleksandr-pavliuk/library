@@ -1,6 +1,7 @@
 package com.pavliuk.library.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -27,7 +28,7 @@ public class Author {
             name = "author_book",
             joinColumns = @JoinColumn(name = "author_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private Set<Book> authorBooks;
+    private Set<Book> authorBooks = new HashSet<>();
 
     public void addBook(Book book) {
         getBooks().add(book);
@@ -68,12 +69,11 @@ public class Author {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Author author = (Author) o;
-        return id.equals(author.id) &&
-                Objects.equals(name, author.name);
+        return id.equals(author.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id);
     }
 }

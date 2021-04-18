@@ -1,6 +1,7 @@
 package com.pavliuk.library.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -28,7 +29,7 @@ public class Book {
                     CascadeType.MERGE
             },
             mappedBy = "authorBooks")
-    private Set<Author> bookAuthors;
+    private Set<Author> bookAuthors = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -67,12 +68,11 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return id.equals(book.id) &&
-                Objects.equals(title, book.title);
+        return id.equals(book.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title);
+        return Objects.hash(id);
     }
 }
