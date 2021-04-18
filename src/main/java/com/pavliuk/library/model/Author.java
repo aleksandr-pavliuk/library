@@ -1,6 +1,7 @@
 package com.pavliuk.library.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -50,5 +51,19 @@ public class Author {
 
     public void setAuthorBooks(Set<Book> authorBooks) {
         this.authorBooks = authorBooks;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Author author = (Author) o;
+        return id.equals(author.id) &&
+                Objects.equals(name, author.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
     }
 }
