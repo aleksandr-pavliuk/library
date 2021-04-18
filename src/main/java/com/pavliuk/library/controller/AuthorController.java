@@ -37,7 +37,6 @@ public class AuthorController extends AbstractController<Author> {
     @GetMapping("/authors")
     public ResponseEntity<List<Author>> getAuthors() {
         final List<Author> authors = authorService.getAll();
-
         return authors != null &&  !authors.isEmpty()
                 ? new ResponseEntity<>(authors, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
