@@ -47,14 +47,8 @@ public class BookController extends AbstractController<Book> {
         bookService.delete(bookId);
     }
 
-    public void addAuthors(Book book) {
-        if (book.getAuthors() != null && book.getAuthors().size() != 0) {
-            book.getAuthors().forEach(author -> authorService.save(author));
-            book.getAuthors().forEach(author -> author.getBooks().forEach(b ->bookService.save(b)));
-        }
-    }
-
-    public Set<Author> getAuthors(Book book) {
-        return book.getAuthors();
+    @GetMapping("/books/{bookId}/authors")
+    public Set<Author> getAuthors(@PathVariable(name = "bookId") Long bookId) {
+        return bookService.get(bookId).getAuthors();
     }
 }
