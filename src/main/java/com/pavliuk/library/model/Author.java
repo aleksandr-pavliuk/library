@@ -37,6 +37,16 @@ public class Author {
         this.id = id;
     }
 
+    public void addBook(Book book) {
+        getBooks().add(book);
+        book.getAuthors().add(this);
+    }
+
+    public void removeBook(Book book) {
+        getBooks().remove(book);
+        book.getAuthors().remove(this);
+    }
+
     public String getName() {
         return name;
     }
@@ -45,7 +55,7 @@ public class Author {
         this.name = name;
     }
 
-    public Set<Book> getAuthorBooks() {
+    public Set<Book> getBooks() {
         return authorBooks;
     }
 

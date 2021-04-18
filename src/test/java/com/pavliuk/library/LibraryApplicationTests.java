@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -61,7 +60,7 @@ class LibraryApplicationTests {
         author.setId(1L);
         author.setName("First");
         author.setAuthorBooks((new HashSet<>(books)));
-        assertFalse(author.getAuthorBooks().isEmpty());
+        assertFalse(author.getBooks().isEmpty());
     }
 
     @Test
@@ -76,7 +75,7 @@ class LibraryApplicationTests {
         book.setTitle("First book");
         book.setDescription("First book description");
         book.setBookAuthors((new HashSet<>(authors)));
-        assertFalse(book.getBookAuthors().isEmpty());
+        assertFalse(book.getAuthors().isEmpty());
     }
 
     @Test

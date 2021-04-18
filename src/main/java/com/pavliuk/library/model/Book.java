@@ -54,7 +54,7 @@ public class Book {
         this.description = description;
     }
 
-    public Set<Author> getBookAuthors() {
+    public Set<Author> getAuthors() {
         return bookAuthors;
     }
 

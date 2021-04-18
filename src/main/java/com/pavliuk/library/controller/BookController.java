@@ -59,16 +59,19 @@ public class BookController extends AbstractController<Book> {
     @Override
     @DeleteMapping("/books/{bookId}")
     public void deleteAction(@PathVariable(name = "bookId") Long bookId) {
+        Book book = bookService.get(bookId);
+        book.getAuthors().forEach(authors -> authors.getBooks().remove(book));
         bookService.delete(bookId);
     }
 
     public void addAuthors(Book book) {
-        if (book.getBookAuthors() != null && book.getBookAuthors().size() != 0) {
-            book.getBookAuthors().forEach(author -> authorService.save(author));
+        if (book.getAuthors() != null && book.getAuthors().size() != 0) {
+            book.getAuthors().forEach(author -> authorService.save(author));
+            book.getAuthors().forEach(author -> author.getBooks().forEach(b ->bookService.save(b)));
         }
     }
 
     public Set<Author> getAuthors(Book book) {
-        return book.getBookAuthors();
+        return book.getAuthors();
     }
 }
