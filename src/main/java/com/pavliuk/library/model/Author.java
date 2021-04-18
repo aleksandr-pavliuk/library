@@ -29,14 +29,6 @@ public class Author {
             inverseJoinColumns = @JoinColumn(name = "book_id"))
     private Set<Book> authorBooks;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void addBook(Book book) {
         getBooks().add(book);
         book.getAuthors().add(this);
@@ -45,6 +37,14 @@ public class Author {
     public void removeBook(Book book) {
         getBooks().remove(book);
         book.getAuthors().remove(this);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
