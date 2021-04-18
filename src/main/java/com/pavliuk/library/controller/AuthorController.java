@@ -44,6 +44,7 @@ public class AuthorController extends AbstractController<Author> {
         author.getBooks().forEach(book -> book.getAuthors().remove(author));
         authorService.delete(authorId);
     }
+
     @GetMapping("/authors/{authorId}/books")
     public Set<Book> getBooks(@PathVariable(name = "authorId") Long authorId) {
         return authorService.get(authorId).getBooks();
