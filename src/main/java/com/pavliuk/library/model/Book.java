@@ -2,13 +2,13 @@ package com.pavliuk.library.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 /**
  * @author Alex
  * @link http://healthfood.net.ua
  */
+
 @Entity
 @Table(name = "books")
 public class Book {
@@ -23,20 +23,12 @@ public class Book {
     @Column(name = "book_description")
     private String description;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            },
-            mappedBy = "authorBooks")
-    private Set<Author> bookAuthors = new HashSet<>();
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "authorBooks")
+    private Set<Author> Authors = new HashSet<>();
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public Book(String title, String description) {
+        this.title = title;
+        this.description = description;
     }
 
     public String getTitle() {
@@ -56,10 +48,33 @@ public class Book {
     }
 
     public Set<Author> getAuthors() {
-        return bookAuthors;
+        return Authors;
     }
 
-    public void setBookAuthors(Set<Author> bookAuthors) {
-        this.bookAuthors = bookAuthors;
+    public void setAuthors(Set<Author> authors) {
+        Authors = authors;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+
+        if (!(o instanceof Author)) return false;
+
+        return id != null && id.equals(((Book) o).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
     }
 }
