@@ -6,7 +6,7 @@ import java.util.List;
  * @author Alex
  * @link http://healthfood.net.ua
  */
-public interface GeneralDAO<T> {
+public interface GeneralService<T> {
     List<T> getAll();
 
     T get(long id);

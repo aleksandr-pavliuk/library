@@ -2,8 +2,8 @@ package com.pavliuk.library.controller;
 
 import com.pavliuk.library.model.Author;
 import com.pavliuk.library.model.Book;
-import com.pavliuk.library.service.impl.AuthorService;
-import com.pavliuk.library.service.impl.BookService;
+import com.pavliuk.library.service.impl.AuthorServiceImpl;
+import com.pavliuk.library.service.impl.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +20,12 @@ import java.util.Set;
 public class BookController extends AbstractController<Book> {
 
     @Autowired
-    private BookService bookService;
+    private BookServiceImpl bookService;
 
     @Autowired
-    private AuthorService authorService;
+    private AuthorServiceImpl authorService;
 
-    public void setBookService(BookService bookService) {
+    public void setBookService(BookServiceImpl bookService) {
         this.bookService = bookService;
     }
 

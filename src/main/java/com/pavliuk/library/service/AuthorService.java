@@ -8,5 +8,5 @@ import org.springframework.web.bind.annotation.RestController;
  * @link http://healthfood.net.ua
  */
 @RestController
-public interface AuthorDao extends GeneralDAO<Author> {
+public interface AuthorService extends GeneralService<Author> {
 }

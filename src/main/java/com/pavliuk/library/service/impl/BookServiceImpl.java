@@ -2,7 +2,7 @@ package com.pavliuk.library.service.impl;
 
 import com.pavliuk.library.model.Book;
 import com.pavliuk.library.repository.BookRepository;
-import com.pavliuk.library.service.BookDao;
+import com.pavliuk.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.Optional;
  * @link http://healthfood.net.ua
  */
 @Service
-public class BookService implements BookDao {
+public class BookServiceImpl implements BookService {
 
     @Autowired
     private BookRepository bookRepository;

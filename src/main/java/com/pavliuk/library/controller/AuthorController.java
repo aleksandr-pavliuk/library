@@ -2,8 +2,8 @@ package com.pavliuk.library.controller;
 
 import com.pavliuk.library.model.Author;
 import com.pavliuk.library.model.Book;
-import com.pavliuk.library.service.impl.AuthorService;
-import com.pavliuk.library.service.impl.BookService;
+import com.pavliuk.library.service.impl.AuthorServiceImpl;
+import com.pavliuk.library.service.impl.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -25,12 +23,12 @@ import java.util.Set;
 public class AuthorController extends AbstractController<Author> {
 
     @Autowired
-    private AuthorService authorService;
+    private AuthorServiceImpl authorService;
 
     @Autowired
-    private BookService bookService;
+    private BookServiceImpl bookService;
 
-    public void setAuthorService(AuthorService authorService) {
+    public void setAuthorService(AuthorServiceImpl authorService) {
         this.authorService = authorService;
     }
 
