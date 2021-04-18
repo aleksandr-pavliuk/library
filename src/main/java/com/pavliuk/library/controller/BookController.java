@@ -5,6 +5,8 @@ import com.pavliuk.library.model.Book;
 import com.pavliuk.library.service.impl.AuthorService;
 import com.pavliuk.library.service.impl.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,9 +30,11 @@ public class BookController extends AbstractController<Book> {
     }
 
     @GetMapping("/books")
-    public List<Book> getBooks() {
+    public ResponseEntity<List<Book>> getBooks() {
         List<Book> books = bookService.getAll();
-        return books;
+        return books != null &&  !books.isEmpty()
+                ? new ResponseEntity<>(books, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @Override

@@ -5,8 +5,15 @@ import com.pavliuk.library.model.Book;
 import com.pavliuk.library.service.impl.AuthorService;
 import com.pavliuk.library.service.impl.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -28,9 +35,12 @@ public class AuthorController extends AbstractController<Author> {
     }
 
     @GetMapping("/authors")
-    public List<Author> getAuthors() {
-        List<Author> authors = authorService.getAll();
-        return authors;
+    public ResponseEntity<List<Author>> getAuthors() {
+        final List<Author> authors = authorService.getAll();
+
+        return authors != null &&  !authors.isEmpty()
+                ? new ResponseEntity<>(authors, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/authors/{authorId}")
