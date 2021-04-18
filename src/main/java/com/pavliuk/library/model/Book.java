@@ -23,8 +23,8 @@ public class Book {
     @Column(name = "book_description")
     private String description;
 
-    @ManyToMany(mappedBy = "books")
-    private Set<Author> authors=new HashSet<>();
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "books")
+    private Set<Author> authors = new HashSet<>();
 
     public Book(String title, String description) {
         this.title = title;
