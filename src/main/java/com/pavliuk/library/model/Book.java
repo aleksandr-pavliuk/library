@@ -1,4 +1,4 @@
-package com.pavliuk.library.entity;
+package com.pavliuk.library.model;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -21,11 +21,12 @@ public class Book {
     @Column(name = "book_description")
     private String description;
 
-    @ManyToMany
-    @JoinTable(
-            name = "book_authors",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id"))
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            mappedBy = "authorBooks")
     private Set<Author> bookAuthors;
 
     public Long getId() {

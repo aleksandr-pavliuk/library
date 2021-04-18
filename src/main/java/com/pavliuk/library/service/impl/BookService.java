@@ -1,9 +1,10 @@
 package com.pavliuk.library.service.impl;
 
-import com.pavliuk.library.entity.Book;
+import com.pavliuk.library.model.Book;
 import com.pavliuk.library.repository.BookRepository;
 import com.pavliuk.library.service.BookDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +13,7 @@ import java.util.Optional;
  * @author Alex
  * @link http://healthfood.net.ua
  */
+@Service
 public class BookService implements BookDao {
 
     @Autowired
@@ -30,11 +32,16 @@ public class BookService implements BookDao {
     @Override
     public Book get(long id) {
         Optional<Book> optBook = bookRepository.findById(id);
-        return optBook.get();
+        return optBook.orElse(null);
     }
 
     @Override
     public void save(Book book) {
+        bookRepository.save(book);
+    }
+
+    @Override
+    public void update(Book book) {
         bookRepository.save(book);
     }
 

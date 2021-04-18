@@ -13,5 +13,7 @@ public interface GeneralDAO<T> {
 
     void save(T obj);
 
+    void update(T obj);
+
     void delete(long id);
 }

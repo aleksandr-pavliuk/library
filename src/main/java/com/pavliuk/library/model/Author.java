@@ -1,4 +1,4 @@
-package com.pavliuk.library.entity;
+package com.pavliuk.library.model;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -17,7 +17,15 @@ public class Author {
     @Column(name = "author_name")
     private String name;
 
-    @ManyToMany(mappedBy = "bookAuthors")
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(
+            name = "author_book",
+            joinColumns = @JoinColumn(name = "author_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
     private Set<Book> authorBooks;
 
     public Long getId() {
@@ -43,5 +51,4 @@ public class Author {
     public void setAuthorBooks(Set<Book> authorBooks) {
         this.authorBooks = authorBooks;
     }
-
 }

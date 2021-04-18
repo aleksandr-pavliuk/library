@@ -1,8 +1,7 @@
 package com.pavliuk.library.controller;
 
 import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * @author Alex
@@ -10,11 +9,11 @@ import java.util.List;
  */
 public abstract class AbstractController<T> {
 
-    abstract public List<T> getAllAction();
-
     abstract public T getAction(@PathVariable() Long id);
 
     abstract public void saveAction(T t);
+
+    abstract public void updateAction(@RequestBody T t, @PathVariable() Long id);
 
     abstract public void deleteAction(@PathVariable() Long id);
 }
