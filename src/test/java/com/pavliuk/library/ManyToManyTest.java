@@ -38,7 +38,6 @@ public class ManyToManyTest {
         Assertions.assertEquals(2, bookRepository.count());
     }
     @Test
-    @DisplayName("отсоединение книги от автора")
     public void whenDeleteAuthorFromBook_thenOneDeleteStatement() {
         Author author = authorRepository.findByName("author1");
         Book book = bookRepository.findByTitle("book1");

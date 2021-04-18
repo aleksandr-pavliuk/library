@@ -9,10 +9,10 @@ import java.util.Set;
  * @link http://healthfood.net.ua
  */
 
+
 @Entity
 @Table(name = "books")
 public class Book {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -23,12 +23,20 @@ public class Book {
     @Column(name = "book_description")
     private String description;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "authorBooks")
-    private Set<Author> Authors = new HashSet<>();
+    @ManyToMany(mappedBy = "books")
+    private Set<Author> authors=new HashSet<>();
 
     public Book(String title, String description) {
         this.title = title;
         this.description = description;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -48,19 +56,11 @@ public class Book {
     }
 
     public Set<Author> getAuthors() {
-        return Authors;
+        return authors;
     }
 
     public void setAuthors(Set<Author> authors) {
-        Authors = authors;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.authors = authors;
     }
 
     @Override

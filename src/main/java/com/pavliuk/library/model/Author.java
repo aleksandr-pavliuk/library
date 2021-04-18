@@ -9,38 +9,34 @@ import java.util.Set;
  * @link http://healthfood.net.ua
  */
 
+
 @Entity
 @Table(name = "authors")
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-
-    @Column(name = "author_name")
     private String name;
-
-    public Author(String name) {
-        this.name = name;
+    public Author(String name){
+        this.name=name;
     }
-
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            })
-    @JoinTable(
-            name = "author_book",
+    @ManyToMany (cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "author_book",
             joinColumns = @JoinColumn(name = "author_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private Set<Book> Books = new HashSet<>();
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    private Set<Book> books=new HashSet();
 
-    public void addBook(Book book) {
-        getBooks().add(book);
+    public void addBook(Book book){
+        this.books.add(book);
         book.getAuthors().add(this);
     }
 
-    public void removeBook(Book book) {
-        getBooks().remove(book);
+    public void removeBook(Book book){
+        this.books.remove(book);
         book.getAuthors().remove(this);
     }
 
@@ -61,11 +57,11 @@ public class Author {
     }
 
     public Set<Book> getBooks() {
-        return Books;
+        return books;
     }
 
     public void setBooks(Set<Book> books) {
-        this.Books = books;
+        this.books = books;
     }
 
     @Override
