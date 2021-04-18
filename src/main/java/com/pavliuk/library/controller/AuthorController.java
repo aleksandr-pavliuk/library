@@ -38,23 +38,6 @@ public class AuthorController extends AbstractController<Author> {
         return authorService.get(authorId);
     }
 
-    @Override
-    @PostMapping("/authors")
-    public void saveAction(Author author) {
-        saveBooks(author);
-        authorService.save(author);
-    }
-
-    @Override
-    @PutMapping("/authors/{authorId}")
-    public void updateAction(@RequestBody Author author,
-                             @PathVariable(name = "authorId") Long authorId) {
-        Author id = authorService.get(authorId);
-        if (id != null) {
-            authorService.update(author);
-        }
-    }
-
     @DeleteMapping("/authors/{authorId}")
     public void deleteAction(@PathVariable(name = "authorId") Long authorId) {
         Author author = authorService.get(authorId);

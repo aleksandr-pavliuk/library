@@ -40,23 +40,6 @@ public class BookController extends AbstractController<Book> {
     }
 
     @Override
-    @PostMapping("/books")
-    public void saveAction(Book book) {
-        addAuthors(book);
-        bookService.save(book);
-    }
-
-    @Override
-    @PutMapping("/books/{bookId}")
-    public void updateAction(@RequestBody Book book,
-                             @PathVariable(name = "bookId") Long bookId) {
-        Book id = bookService.get(bookId);
-        if (id != null) {
-            bookService.update(book);
-        }
-    }
-
-    @Override
     @DeleteMapping("/books/{bookId}")
     public void deleteAction(@PathVariable(name = "bookId") Long bookId) {
         Book book = bookService.get(bookId);

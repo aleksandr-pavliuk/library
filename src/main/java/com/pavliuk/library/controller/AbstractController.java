@@ -11,9 +11,5 @@ public abstract class AbstractController<T> {
 
     abstract public T getAction(@PathVariable() Long id);
 
-    abstract public void saveAction(T t);
-
-    abstract public void updateAction(@RequestBody T t, @PathVariable() Long id);
-
     abstract public void deleteAction(@PathVariable() Long id);
 }
